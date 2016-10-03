@@ -15,7 +15,7 @@ Data sources
 
 Project Team
 ------------
-**Dr. Chirag Shah - Rutgers University**
+- **Dr. Chirag Shah - Rutgers University**
 
 Associate Professor of Information Science
 
@@ -23,18 +23,18 @@ Affiliate member of Computer Science
 
 
 
-**Soumik Mandal - Rutgers University**
+- **Soumik Mandal - Rutgers University**
 
 PhD student - Information Science
 
 
 
-**Jonathan Pulliza - Rutgers University**
+- **Jonathan Pulliza - Rutgers University**
 
 PhD student - Information Science
 
 
 
-**Kevin Albertson - Rutgers University**
+- **Kevin Albertson - Rutgers University**
 
 Master's student - Computer Science and Mathematics
