@@ -1,0 +1,12 @@
+{
+  "name": "un-vote-scraper",
+  "version": "0.0.1",
+  "description": "Scrape voting records from http://unbisnet.un.org:8080/",
+  "dependencies": {
+    "async": "^2.0.1",
+    "cheerio": "^0.22.0",
+    "request": "^2.75.0",
+    "sqlite": "^2.2.0",
+    "sqlite3": "^3.1.4"
+  }
+}
