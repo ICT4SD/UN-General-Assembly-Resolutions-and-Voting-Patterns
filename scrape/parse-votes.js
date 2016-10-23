@@ -8,9 +8,9 @@ const MongoClient = require('mongodb').MongoClient
 , fs = require('fs')
 , async = require('async')
 , inDir = 'data/scraped-voting-pages/'
-, outFilePath = 'data/votes.csv'
+, outFilePath = 'data/votes-segmented.csv'
 , mongoUri = 'mongodb://localhost:27017/un_voting'
-, mongoCollection = 'votes2'
+, mongoCollection = 'votes-segmented'
 , concurrency = 16
 ;
 
@@ -21,7 +21,7 @@ let db = null // set on initialization
 ;
 
 function filterKey(key) {
-    return key.toLowerCase().replace(/,/g, '').replace(/\s/g, '_');
+    return key.toLowerCase().replace(/\s/g, '_');
 }
 
 function processVotingCell(data, voteCell) {
@@ -49,27 +49,51 @@ function extractData(body) {
         let key = elem.text().slice(0, -2); // remove trailing space and colon.
         key = filterKey(key);
         let value = elem.parent().find('td:nth-child(2)');
+        let anchors = value.find('a[href^=http]');
 
         if (key == 'detailed_voting') {
             processVotingCell(data, value);
             return;
         }
+
+        if (key == 'related_document') {
+            let text = value.text();
+            // This may have multiple lines.
+            let lines = value.find('.normalBlackFont1');
+            if (lines.length > 1) {
+                let lineArray = [];
+                lines.each((index, rawElem) => { lineArray.push($(rawElem).text()); });
+                text = lineArray.join(" and "); // Consistent with rest of data.
+            }
+            data[key] = text;
+            return;
+        }
         
-        let anchors = value.find('a[href^=http]');
-        if (anchors.length == 0) {
-            // Text node.
-            data[key] = value.text().replace(/,/g, ''); // Remove commas.
-        } else if (anchors.length == 1) {
-            data[key] = anchors.text().replace(/,/g, '');
-            data[key + '_link'] = anchors.attr('href'); 
-        } else {
-            // Multiple links, one has the english link.
+        if (key == 'link_to') {
+            // Multiple links, one may have the english link.
             let eng = null;
             anchors.each((index, rawElem) => {
                 if ($(rawElem).text() == 'English') eng = $(rawElem);
             });
             if (eng) data[key + '_link'] = eng.attr('href');
+            return;
         }
+        
+        // Rest of fields are either just text or links.
+        if (anchors.length > 0) {
+            let anchorTextList = [], anchorLinkList = [];
+            anchors.each((index, rawElem) => { 
+                let el = $(rawElem);
+                anchorTextList.push(el.text());
+                anchorLinkList.push(el.attr('href'));
+            });
+            data[key] = anchorTextList.join(' ! '); // Arbitrary delimitter.
+            data[key + '_link'] = anchorLinkList.join(' ');
+            return;
+        }
+
+        // Else assume text node.
+        data[key] = value.text();
     });
 
     return data;

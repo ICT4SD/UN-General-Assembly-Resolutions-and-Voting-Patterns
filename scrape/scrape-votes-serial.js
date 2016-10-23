@@ -1,8 +1,8 @@
-// Used to scrape the individual vote pages after running scrape-records.js.
+// Used to scrape the individual vote pages after running scrape-records.js. 
 //
-// The input of comes from the saved MongoDB records. The resulting HTML page will be saved locally
-// in the data/scraped-voting-pages directory. Running on Windows 10 Laptop with core i7 and 8GB of
-// RAM took about 20 minutes to scrape 8000 records.
+// WARNING: This file is deprecated, but included since out-of-memory errors were being experienced 
+// with scrape-votes.js. This file is significantly slower than scrape-votes.js, only use if needed.
+//
 
 const MongoClient = require('mongodb').MongoClient
 , request = require('request')
@@ -61,10 +61,9 @@ function scrape(callback) {
     let pipeline = [{$group: {_id: '$un_resolution_symbol', record: {$first: '$$ROOT'}}}];
     // If you want to simply test it on one record, add a limit here.
     let cursor = db.collection(mongoCollection).aggregate(pipeline);
-    let c = 0;
-    function process(taskCallback) {
-        if (true || fs.existsSync(outDir + record['record_num'] + '.html')) {
-            console.log('Here ' + c); c++;
+    function process(record, taskCallback) {
+        if (fs.existsSync(outDir + record['record_num'] + '.html')) {
+            console.log('Ignoring ' + record['record_num']);
             taskCallback();
             return;
         }
@@ -84,10 +83,10 @@ function scrape(callback) {
     function processIterate() {
         cursor.next().then((record) => {
             if (record == null) {
-                console.log("Finished");
+                console.log('Finished, took ' + ((Date.now() - startTime) / 1000) + 's');
                 callback();
             }
-            process(processIterate);
+            process(record['record'], processIterate);
         });
     }
     processIterate();

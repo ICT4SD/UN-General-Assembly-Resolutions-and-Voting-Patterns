@@ -1,0 +1,2 @@
+scrape/data/votes.csv filter=lfs diff=lfs merge=lfs -text
+scrape/data/scraped-voting-pages.zip filter=lfs diff=lfs merge=lfs -text
