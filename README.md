@@ -14,3 +14,7 @@ Data sources
 - Official UN documents are accessible at: https://search.un.org
 
 - The GA voting records are available at: http://unbisnet.un.org:8080/ipac20/ipac.jsp?profile=voting
+
+- The scraped HTML pages of GA voting records are available in a [zip file](https://github.com/ICT4SD/UN-General-Assembly-Resolutions-and-Voting-Patterns/raw/master/scrape/data/scraped-voting-pages.zip)
+
+- The GA voting records in CSV format can be [downloaded here](https://github.com/ICT4SD/UN-General-Assembly-Resolutions-and-Voting-Patterns/raw/master/scrape/data/votes.csv)
