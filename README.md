@@ -12,7 +12,7 @@ This project analyses text from thousands of UN official documents as well as GA
 Data sources
 -------------
 - All official UN documents are accessible at: https://search.un.org
-    - A collection of GA resolutions (A/RES/..) with scraped text can be [downloaded here](https://github.com/ICT4SD/UN-General-Assembly-Resolutions-and-Voting-Patterns/raw/master/scrape/data/docs.json) in one JSON file.
+    - A subset containing only GA resolutions (A/RES/..) with scraped text can be [downloaded here](https://github.com/ICT4SD/UN-General-Assembly-Resolutions-and-Voting-Patterns/raw/master/scrape/data/docs.json) in one JSON file.
     - The download above is also available as separate JSON documents (one per resolution) [here](https://github.com/ICT4SD/UN-General-Assembly-Resolutions-and-Voting-Patterns/raw/master/scrape/data/scraped-docs.zip).
 
 - The official source of GA voting records is: http://unbisnet.un.org:8080/ipac20/ipac.jsp?profile=voting
