@@ -13,7 +13,7 @@ Data sources
 -------------
 - Official UN documents are accessible at: https://search.un.org
     - The documents with scraped text can be [downloaded here](https://github.com/ICT4SD/UN-General-Assembly-Resolutions-and-Voting-Patterns/raw/master/scrape/data/docs.json) in one JSON file. Currently these are limited to a 100 document subset.
-    - The download above is also available as separate JSON documents (one per resolution) [here](https://github.com/ICT4SD/UN-General-Assembly-Resolutions-and-Voting-Patterns/raw/master/scrape/data/scraped-docs.json).
+    - The download above is also available as separate JSON documents (one per resolution) [here](https://github.com/ICT4SD/UN-General-Assembly-Resolutions-and-Voting-Patterns/raw/master/scrape/data/scraped-docs.zip).
 
 - The GA voting records are available at: http://unbisnet.un.org:8080/ipac20/ipac.jsp?profile=voting
     - The scraped HTML pages of GA voting records are available in a [zip file](https://github.com/ICT4SD/UN-General-Assembly-Resolutions-and-Voting-Patterns/raw/master/scrape/data/scraped-voting-pages.zip)
