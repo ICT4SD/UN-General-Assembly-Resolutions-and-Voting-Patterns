@@ -2,4 +2,6 @@ node_modules
 data/*
 !data/scraped-voting-pages.zip
 !data/votes.csv
+!data/scraped-docs.zip
+!data/docs.json
 ODS
