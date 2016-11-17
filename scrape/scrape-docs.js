@@ -73,7 +73,7 @@ function scrape(callback) {
     };
 
     // This pipline groups by the resolution symbol to remove duplicates.
-    let pipeline = [{$group: {_id: '$un_resolution_symbol', record: {$first: '$$ROOT'}}}, {$limit: 100}];
+    let pipeline = [{$group: {_id: '$un_resolution_symbol', record: {$first: '$$ROOT'}}}];
     // If you want to simply test it on one record, add a limit here.
     db.collection(mongoCollection).aggregate(pipeline).each((err, doc) => {
         if (err) throw err;
