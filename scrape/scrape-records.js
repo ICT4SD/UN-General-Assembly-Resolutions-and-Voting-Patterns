@@ -141,13 +141,13 @@ function scrape(callback) {
 
 MongoClient.connect(mongoUri, (err, mongoDb) => {
     if (err) throw err;
-    db = mongoDb;
+    db = mongoDb.db("unbisnet");
     db.collection(mongoCollection).count().then((count) => {
         if (count > 0) {
             console.error('Warning, collection ' + mongoCollection + ' is not empty, exiting.');
             process.exit(1);
             return;
         }
-        scrape(() => { db.close(); });
+        scrape(() => { mongoDb.close(); });
     });
 });

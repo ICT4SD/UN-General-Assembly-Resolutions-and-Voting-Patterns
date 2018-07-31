@@ -5,6 +5,7 @@
   "dependencies": {
     "async": "^2.0.1",
     "cheerio": "^0.22.0",
+    "mongodb": "^3.1.1",
     "request": "^2.75.0",
     "sqlite": "^2.2.0",
     "sqlite3": "^3.1.4"
